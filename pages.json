@@ -1,0 +1,208 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		
+		{
+			"path": "pages/redirect/index",
+			"style": {
+				"navigationBarTitleText": "跳转",
+				"navigationStyle": "custom"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/sort/index",
+			"style": {
+				"navigationBarTitleText": "分类"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/mine/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/about/index",
+			"style": {
+				"navigationBarTitleText": "关于我们"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/selectType/index",
+			"style": {
+				"navigationBarTitleText": "选择分类"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/search/index",
+			"style": {
+				"navigationBarTitleText": "搜索"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/webview/index",
+			"style": {
+				"navigationBarTitleText": "网页"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/detail/index",
+			"style": {
+				"navigationBarTitleText": "帖子详情"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/mailDetail/index",
+			"style": {
+				"navigationBarTitleText": "站内信详情"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/addMail/index",
+			"style": {
+				"navigationBarTitleText": "留言"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/publish/success",
+			"style": {
+				"navigationBarTitleText": "发布"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/addMail/success",
+			"style": {
+				"navigationBarTitleText": "留言成功"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/information/index",
+			"style": {
+				"navigationBarTitleText": "个人信息",
+				"backgroundColor": "#fff8f8"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/information/company",
+			"style": {
+				"navigationBarTitleText": "个人信息",
+				"backgroundColor": "#fff8f8"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/result/index",
+			"style": {
+				"navigationBarTitleText": "搜索结果",
+				"app-plus": {
+					"scrollIndicator": "none"
+				}
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/publish/index",
+			"style": {
+				"navigationBarTitleText": "发布"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+
+		{
+			"path": "pages/download/index",
+			"style": {
+				"navigationBarTitleText": "APP下载"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/district/index",
+			"style": {
+				"navigationBarTitleText": "地区选择"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/doctor/index",
+			"style": {
+				"navigationBarTitleText": "成为医生"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		},
+		{
+			"path": "pages/doctor/success",
+			"style": {
+				"navigationBarTitleText": "提交成功"
+				// "enablePullDownRefresh": true //是否下拉刷新
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "医生论坛",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#808080",
+		"selectedColor": "#0293e9",
+		"backgroundColor": "#fff",
+		"borderStyle": "black",
+		"fontSize": "10px",
+		"height": "56px",
+		"iconWidth": "24px",
+		"spacing": "3px",
+		"list": [{
+				"pagePath": "pages/index/index", //跳转路径
+				"iconPath": "static/icon/navbar_index_false.png", // 默认icon
+				"selectedIconPath": "static/icon/navbar_index_true.png", // 选中后的icon
+				"text": "首页" // 标题
+			},
+			{
+				"pagePath": "pages/sort/index", //跳转路径
+				"iconPath": "static/icon/navbar_catalog_false.png", // 默认icon
+				"selectedIconPath": "static/icon/navbar_catalog_true.png", // 选中后的icon
+				"text": "分类" // 标题
+			},
+			{
+				"pagePath": "pages/publish/index", //跳转路径
+				"iconPath": "static/icon/navbar_publish_false.png", // 默认icon
+				"selectedIconPath": "static/icon/navbar_publish_true.png", // 选中后的icon
+				"text": "发布" // 标题
+			},
+			{
+				"pagePath": "pages/mine/index", //跳转路径
+				"iconPath": "static/icon/navbar_my_false.png", // 默认icon
+				"selectedIconPath": "static/icon/navbar_my_true.png", // 选中后的icon
+				"text": "我的" // 标题
+			}
+		]
+	}
+}

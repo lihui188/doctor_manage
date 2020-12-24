@@ -1,0 +1,125 @@
+.topTitleBox {
+	width: 100%;
+	top: 0;
+	z-index: 99;
+	background-color: #FFFFFF;
+	position: fixed;
+	box-shadow: rgba(0,0,0,.2) 0 1px 5px 0px;
+	padding: 0 12upx 18upx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.arrow {
+		width: 60upx;
+		height: 60upx;
+		position: absolute;
+		left: 0;
+	}
+	.title {
+		font-size: 32upx;
+		color: #000;
+		font-weight: bold;
+	}
+}
+
+.headPlaceBox {
+	width: 100%;
+	
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.arrow {
+		width: 60upx;
+		height: 60upx;
+		position: absolute;
+		left: 0;
+	}
+	.title {
+		font-size: 32upx;
+		color: #000;
+		font-weight: bold;
+	}
+}
+
+.leaveBox {
+	width: 100%;
+	padding: 38upx 48upx 0;
+	box-sizing: border-box;
+	.text {
+		font-size: 28upx;
+		color: #505050;
+		line-height: 42upx;
+	}
+}
+
+.textareaBox {
+		width: 100%;
+		margin-top: 20upx;
+		
+		box-sizing: border-box;
+		background-color: #FFFFFF;
+		.textareaStyle {
+			width: 100%;
+			height: 524upx;
+			padding: 15upx;
+			box-sizing: border-box;
+			border: 1px solid #a6a6a6;
+			font-size: 28upx;
+			line-height: 42upx;
+			border-radius: 6upx;
+		}
+		.textColor {
+			
+		}
+	}
+	
+.button_style_custom {
+		margin: 50upx 0upx 0;
+		.customColor {
+			background-color: #2a82e4;
+			color: #ffffff;
+			border-radius: 50vw;
+			font-size: 28upx;
+			padding: 13upx 0;
+		}
+		//点击后样式
+		.hoverColor {
+			background-color: #66b1ff;
+		}
+	}
+	
+.button_style_white {
+		margin: 52upx 0upx 0;
+		.customColor {
+			background-color: #FFFFFF;
+			border: 1px solid #2a82e4;
+			color: #2a82e4;
+			border-radius: 50vw;
+			font-size: 28upx;
+			padding: 13upx 0;
+		}
+		//点击后样式
+		.hoverColor {
+			background-color: #66b1ff;
+		}
+	}
+	
+.successBox {
+	width: 100%;
+	padding: 62upx 48upx 0;
+	box-sizing: border-box;
+	text-align: center;
+	.successImg {
+		width: 256upx;
+		height: 256upx;
+	}
+	.text {
+		color: #505050;
+		font-size: 28upx;
+		line-height: 42upx;
+		margin: 44upx 0 52upx;
+		
+	}
+}

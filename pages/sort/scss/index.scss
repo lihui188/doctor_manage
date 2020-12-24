@@ -1,0 +1,163 @@
+.content {
+	width: 100%;
+	::-webkit-scrollbar {
+		display: none;  
+		width: 0;  
+		height: 0;  
+		-webkit-appearance: none;  
+		background: transparent;  
+	}
+}
+.headSearchBox {
+	width: 100%;
+	background-color: #FFFFFF;
+	padding: 10upx 32upx 14upx 18upx;
+	box-sizing: border-box;
+	display: flex;
+	z-index: 999;
+	align-items: center;
+	position: fixed;
+	.left {
+		font-size: 32upx;
+		color: #2a82e4;
+		margin-right: 34upx;
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		.image {
+			width: 58upx;
+			height: 58upx;
+			margin-right: 14upx;
+		}
+	}
+	.right {
+		flex: 1;
+		background-color: #c1dfff;
+		border-radius: 200upx;
+		height: 100%;
+		padding: 0upx 36upx;
+		box-sizing: border-box;
+		display: flex;
+		height: 68upx;
+		align-items: center;
+		justify-content: center;
+		.rightFlex {
+			display: flex;
+			align-items: center;
+		}
+		.search-icon {
+			width: 40upx;
+			height: 40upx;
+		}
+		.text {
+			color: #419bff;
+			font-size: 24upx;
+			line-height: 36upx;
+		}
+	}
+}
+
+.headNullBox {
+	width: 100%;
+	padding: 10upx 32upx 14upx 18upx;
+	box-sizing: border-box;
+	display: flex;
+	z-index: -1;
+	align-items: center;
+	.left {
+		font-size: 32upx;
+		color: #FFFFFF;
+		margin-right: 34upx;
+		font-weight: bold;
+	}
+	.right {
+		flex: 1;
+		border-radius: 10upx;
+		height: 100%;
+		padding: 0upx 36upx;
+		box-sizing: border-box;
+		display: flex;
+		height: 68upx;
+		align-items: center;
+		.search-icon {
+			width: 40upx;
+			height: 40upx;
+			margin-right: 18upx;
+		}
+		.text {
+			color: #419bff;
+			font-size: 24upx;
+		}
+	}
+}
+
+.searchBox {
+	width: 100%;
+	display: flex;
+	.scorll-left {
+		width: 200upx;
+		background-color: #e1efff;
+		height: 100%;
+		.left_item {
+			width: 200upx;
+			height: 108upx;
+			font-size: 32upx;
+			color: #505050;
+			justify-content: center;
+			align-items: center;
+			box-sizing: border-box;
+			display: flex;
+			.line {
+				background-color: #2a82e4;
+				width: 10upx;
+				height: 100%;
+				left: 0;
+			}
+			.text {
+				flex: 1;
+				text-align: center;
+			}
+		}
+		.selectLeft {
+			background-color: #FFFFFF;
+			color: #2a82e4;
+		}
+	}
+	.scorll-right {
+		color: #505050;
+		font-size: 28upx;
+		line-height: 42upx;
+		flex: 1;
+		margin-left: 20upx;
+		.right_item {
+			padding: 24upx 0;
+			border-bottom: 1px solid #e5e5e5;
+			
+		}
+	}
+	
+}
+
+.wxaSortPickerTemTags {
+	width: 56upx;
+	color: #999999;
+	padding-top: 2px;
+	.wxaSortPickerTemTag {
+		text-align: center;
+		font-size: 26upx;
+		line-height: 40upx;
+	}
+	.sortSelect {
+		color: #FFFFFF;
+		background-color: #2a82e4;
+		font-size: 26upx;
+		border-radius: 50%;
+		margin: 0 8upx;
+		
+	}
+}
+
+
+
+
+	

@@ -1,0 +1,88 @@
+.topTitleBox {
+	width: 100%;
+	top: 0;
+	z-index: 99;
+	background-color: #FFFFFF;
+	position: fixed;
+	box-shadow: rgba(0,0,0,.2) 0 1px 5px 0px;
+	padding: 0 12upx 18upx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.arrow {
+		width: 60upx;
+		height: 60upx;
+		position: absolute;
+		left: 0;
+	}
+	.title {
+		font-size: 32upx;
+		color: #000;
+		font-weight: bold;
+	}
+}
+
+.headPlaceBox {
+	width: 100%;
+	
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.arrow {
+		width: 60upx;
+		height: 60upx;
+		position: absolute;
+		left: 0;
+	}
+	.title {
+		font-size: 32upx;
+		color: #000;
+		font-weight: bold;
+	}
+}
+
+.messageBox {
+	width: 100%;
+	padding: 48upx 40upx 0;
+	box-sizing: border-box;
+	.titleBox {
+		width: 100%;
+		margin-bottom: 136upx;
+		.title {
+			color: #505050;
+			font-size: 32upx;
+			display: flex;
+			align-items: center;
+			.line {
+				margin-right: 10upx;
+				height: 32upx;
+				width: 12upx;
+				background-color: #2a82e4;
+			}
+			.line2 {
+				margin-right: 10upx;
+				height: 32upx;
+				width: 12upx;
+				background-color: #ff5733;
+			}
+			.text {
+				color: #505050;
+				font-size: 32upx;
+				line-height: 48upx;
+			}
+		}
+		.mailContent {
+			color: #000000;
+			font-size: 28upx;
+			line-height: 42upx;
+			margin-top: 26upx;
+			margin-left: 22upx;
+		}
+	}
+	.margin {
+		margin-bottom: 136upx;
+	}
+}
+

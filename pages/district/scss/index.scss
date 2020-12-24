@@ -1,0 +1,106 @@
+.topTitleBox {
+	width: 100%;
+	top: 0;
+	z-index: 99;
+	background-color: #FFFFFF;
+	position: fixed;
+	box-shadow: rgba(0,0,0,.2) 0 1px 5px 0px;
+	padding: 0 12upx 18upx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.arrow {
+		width: 60upx;
+		height: 60upx;
+		position: absolute;
+		left: 0;
+	}
+	.title {
+		height: 50upx;
+		font-size: 32upx;
+		color: #000;
+		font-weight: bold;
+	}
+}
+
+.headPlaceBox {
+	width: 100%;
+	
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.arrow {
+		width: 60upx;
+		height: 60upx;
+		position: absolute;
+		left: 0;
+	}
+	.title {
+		font-size: 32upx;
+		color: #000;
+		font-weight: bold;
+	}
+}
+
+.fixedImg {
+	width: 100%;
+	height: 506upx;
+	position: fixed;
+	bottom: 0;
+	z-index: -1;
+}
+
+.textBox {
+	width: 100%;
+	padding: 0 34upx;
+	box-sizing: border-box;
+	color: #505050;
+	font-size: 28upx;
+	line-height: 70upx;
+	z-index: 999;
+	.text {
+		text-indent:56upx;
+	}
+}
+.chooseProvince{
+	height:100upx;
+	margin: 0 20upx;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 28upx;
+}
+.selectProvince{
+	border-bottom: 1px solid #dddddd;
+	display: flex;
+	align-items: center;
+	justify-content:space-between;
+}
+.backTopBox {
+	width: 120upx;
+	height: 120upx;
+	background-color: #2a82e4;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.24);
+	border-radius: 50%;
+	position: fixed;
+	right: 22upx;
+	bottom: 272upx;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	.img {
+		width: 50upx;
+		height: 50upx;
+		vertical-align: top;
+	}
+	.text {
+		color: #FFFFFF;
+		font-size: 20upx;
+		transform: scale(.8);
+		line-height: 30upx;
+	}
+}
