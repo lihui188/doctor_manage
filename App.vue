@@ -1,4 +1,20 @@
 <script>
+	export default {
+		globalData: {
+			
+		},
+		onLaunch: function() {
+			
+		},
+		onShow: function() {
+			
+		},
+		onHide: function() {
+			
+		}
+	}
+</script>
+<!-- <script>
 	import config from '@/global/js/config'
 	// #ifdef H5
 	import {
@@ -80,3 +96,4 @@
 	}
 	// #endif
 </script>
+ -->

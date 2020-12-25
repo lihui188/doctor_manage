@@ -3,15 +3,12 @@
 		<uni-popup ref="popup" type="center" :maskClick="false">
 			<view class="followBox">
 				<image :src="convert(wxQRCode)" class="img" mode="aspectFill" @longpress="saveImg(wxQRCode)">
-
 					<view class="text">
 						客服微信二维码
 					</view>
-
 					<view class="text2">
 						长按保存到手机，微信扫码添加
 					</view>
-
 					<view class="buttonBox" @click="hide()">
 						确认
 					</view>

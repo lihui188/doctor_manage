@@ -90,7 +90,7 @@
 				<label class="text">可用资金</label>
 			</view>
 			<view class="selectSort">
-				<input class="avaliable" type="number" maxlength="8" v-model="available" placeholder="请输入可用资金数" />
+				<input class="avaliable" type="number" maxlength="8" v-model="available" placeholder="请输入可用资金数" @input="check"/>
 			</view>
 
 			<view class="itemBox">
@@ -334,6 +334,10 @@
 		this.getMyMes()
 		},
 		methods: {
+			check() {
+				this.available = this.available.replace(/^0*/g, "");
+				this.available = this.available.replace(/[^0-9]/g, "");
+			},
 			endVideo(){
 				this.showVideo = -1
 			},
@@ -592,6 +596,7 @@
 			 },
 			nextTwo(){
 				if(this.smallTypeObj != '' && this.postProvince != '' && this.roundChecked !== '' && this.healthType !== '' && this.available != ''){
+					var one = this.available.split('')[0];
 					this.step = 2
 					this.top()
 				}else{
@@ -639,7 +644,6 @@
 						url: '/pages/selectType/index'
 					})
 				}
-				
 			},
 			getBigName(id){
 				let arr = this.bigType.find(array => array.id == id)

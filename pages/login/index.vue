@@ -9,6 +9,7 @@
 
 <script>
 	import config from '@/global/js/config'
+	import urlQuery from '@/utils/url_query.js'
 	import {
 		appid,
 		callbackUrl
@@ -17,7 +18,15 @@
 		data() {
 			return {};
 		},
+		created() {
+			this.justify()
+		},
 		methods: {
+			justify() {
+				if(urlQuery().code) {
+					this.wxLogin()
+				}
+			},
 			wxLogin() {
 				if (!config.isH5WxLogin) {
 					return
@@ -26,9 +35,9 @@
 					return
 				}
 				// 用于h5重定向
-				if (window.location.pathname !== '/') {
-					this.$setMemoryPmt('url', window.location.pathname + window.location.search)
-				}
+				// if (window.location.pathname !== '/') {
+				// 	this.$setMemoryPmt('url', window.location.pathname + window.location.search)
+				// }
 
 				const code = this.$wxLogin({
 					appid,
@@ -56,7 +65,7 @@
 						})
 
 						setTimeout(function() {
-							uni.switchTab({
+							uni.reLaunch({
 								url: '/pages/index/index'
 							})
 						}, 1500)

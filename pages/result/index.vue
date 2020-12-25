@@ -374,7 +374,7 @@
 				this.$http_normal({
 					url: `/api/postType/page`
 				}).then(res => {
-					_this.bigType = res.data.filter(arr => arr.parentId === null);
+					_this.bigType = res.data.content.filter(arr => arr.parentId === null);
 				});
 			},
 			getPost() {

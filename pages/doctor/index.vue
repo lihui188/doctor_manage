@@ -42,11 +42,11 @@
 			</pick-regions>
 			<view class="inputBox">
 				<span class="fillContent">详细地址</span>
-				<input v-model="subDoctor.detailAddress" class="inputFill" type="text" maxlength="50" placeholder="请输入" />
+				<input v-model="subDoctor.detailAddress" class="inputFill" type="text" maxlength="20" placeholder="请输入" />
 			</view>
 			<view class="inputBox">
 				<span class="fillContent">证件号码</span>
-				<input v-model="subDoctor.certificateCode" class="inputFill" type="text" maxlength="50" placeholder="请输入" />
+				<input v-model="subDoctor.certificateCode" class="inputFill" type="text" maxlength="30" placeholder="请输入" />
 			</view>
 		</view>
 		<view class="proMsg">
@@ -142,9 +142,25 @@
 					})
 					return
 				}
+				var trueReg = /^([\u4e00-\u9fa5]{1,20}|[a-zA-Z\.\s]{1,20})$/
+				if(this.subDoctor.trueName !== ''&&!trueReg.test(this.subDoctor.trueName)){
+					uni.showToast({
+						title:'姓名只能由汉字或英文组成',
+						icon:'none'
+					})
+					return
+				}
 				if(this.subDoctor.age === ''){
 					uni.showToast({
 						title:'年龄不能为空',
+						icon:'none'
+					})
+					return
+				}
+				var patt = /^120$|^[1-9]$|^(1[0-1]|[1-9])\d$/;
+				if(this.subDoctor.age !== ''&&!patt.test(this.subDoctor.age)){
+					uni.showToast({
+						title:'年龄只能输入1-120',
 						icon:'none'
 					})
 					return
