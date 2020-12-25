@@ -90,7 +90,7 @@
 				<label class="text">可用资金</label>
 			</view>
 			<view class="selectSort">
-				<input class="avaliable" type="number" maxlength="16" v-model="available" placeholder="请输入可用资金数" />
+				<input class="avaliable" type="number" maxlength="8" v-model="available" placeholder="请输入可用资金数" />
 			</view>
 
 			<view class="itemBox">
@@ -161,16 +161,14 @@
 				</view>
 			</pick-regions>
 			<view class="selectSort2">
-				<input type="text" class="input" maxlength="16" placeholder="请填写详细地址" placeholder-class="place" v-model="detailAddress" />
+				<input type="text" class="input" maxlength="20" placeholder="请填写详细地址" placeholder-class="place" v-model="detailAddress" />
 			</view>
 
 			<view class="itemBox2">
-
 				<label class="text">微信号</label>
 			</view>
 			<view class="selectSort2">
-				<input type="text" maxlength="16" class="input" placeholder="请填写" placeholder-class="place" v-model="wxNumber" />
-
+				<input type="text" maxlength="20" class="input" placeholder="请填写" placeholder-class="place" v-model="wxNumber" />
 			</view>
 
 			<view class="buttonBox">

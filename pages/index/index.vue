@@ -244,6 +244,7 @@
 
 		onShow() {
 			let _this = this
+			bus.$off('getProvince')
 			bus.$on('getProvince', res => {
 				_this.province = res
 				if(_this.province !== ''){
@@ -367,7 +368,7 @@
 				});
 			},
 			onReachBottom() {
-				if (this.page * this.size < this.totalElements) {
+				if (this.page * this.size <= this.totalElements) {
 					this.page = this.page + 1
 					this.getHotPost()
 				} else {
@@ -408,6 +409,7 @@
 				}).catch(e => {
 					_this.$refs.loadMore.$loadError();
 				});
+				
 			},
 			getSwiper() {
 				let _this = this
