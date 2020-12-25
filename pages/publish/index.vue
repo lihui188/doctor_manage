@@ -327,6 +327,7 @@
 		},
 		onShow() {
 			let _this = this
+			bus.$off('getType')
 			bus.$on('getType',res => {
 				_this.smallTypeObj = res
 			})
@@ -470,7 +471,7 @@
 				});
 			},
 			openCamera() {
-				      this.$getImgFile(this.imgCount)
+				      this.$getImgFile(4,1)
 				        .then((res) => {
 				          this.$http_file({
 				            url: "/api/localStorage/upload",
@@ -603,8 +604,22 @@
 			},
 			nextThird(){
 				if(this.contactName != '' && this.detailAddress != '' && this.phone != '' && this.form.province != ''){
-					this.step = 3
-					this.top()
+					if(this.wxNumber === ''){
+						this.step = 3
+						this.top()
+						return
+					}
+					var wxreg=/^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$/;
+					if(this.wxNumber !== ''&&!wxreg.test(this.wxNumber)){
+						uni.showToast({
+							title: '微信账号仅支持6-20个字母、数字、下划线或减号，以字母开头',
+							icon: 'none',
+							mask: true
+						})
+					}else{
+						this.step = 3
+						this.top()
+					}
 				}else{
 					uni.showToast({
 						title: '请填写完整信息',

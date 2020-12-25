@@ -206,7 +206,10 @@
 				publishType3: '',
 
 				publishTypes: [],
-				typeSons: []
+				typeSons: [],
+				
+				// 页数判断
+				totalElements:0
 			}
 		},
 		onLoad(options) {
@@ -358,8 +361,13 @@
 				this[type] = e
 			},
 			onReachBottom() {
-				this.page = this.page + 1
-				this.getPost()
+				if(this.page*this.size<=this.totalElements){
+					this.page = this.page + 1
+					this.getPost()
+				}else{
+					return
+				}
+				
 			},
 			getType() {
 				let _this = this
@@ -410,6 +418,7 @@
 						// typeSons: this.typeSons.join(",")
 					}
 				}).then(res => {
+					this.totalElements = res.data.totalElements
 					if (_this.page == 1) {
 						_this.PostList = []
 					}

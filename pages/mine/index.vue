@@ -477,7 +477,7 @@
 			},
 			onReachBottom() {
 				if (this.modeType == 0) {
-					if(this.page*this.size<this.totalElements){
+					if(this.page*this.size<=this.totalElements){
 						this.page = this.page + 1
 						this.getPost()
 					}else{
@@ -485,7 +485,7 @@
 					}
 					
 				} else if (this.modeType == 2) {
-					if(this.mailPage*this.mailSize<this.mailTotalElements){
+					if(this.mailPage*this.mailSize<=this.mailTotalElements){
 						this.mailPage = this.mailPage + 1
 						this.getMail()
 					}else{
