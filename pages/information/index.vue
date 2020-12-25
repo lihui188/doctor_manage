@@ -101,6 +101,10 @@
 
 <script>
 	import pickRegions from '@/components/pick-regions/pick-regions.vue'
+	import { 
+	  isPhone, 
+	  isMobile } 
+	from '@/utils/validate'
 	import {
 		baseUrl,
 		appid
@@ -283,6 +287,14 @@
 				if (_this.vphone == '') {
 					uni.showToast({
 						title: '请输入手机号',
+						mask: true,
+						icon: 'none'
+					})
+					return
+				}
+				if(!/^1[0-9]{10}$/.test(_this.vphone)){
+					uni.showToast({
+						title: '手机号码格式不正确',
 						mask: true,
 						icon: 'none'
 					})

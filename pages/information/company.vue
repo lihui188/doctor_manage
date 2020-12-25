@@ -134,7 +134,15 @@
 			},
 			save(){
 				let _this = this
-				          
+				var wxreg=/^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$/;
+				if(this.wechatId !== ''&&!wxreg.test(this.wechatId)){
+					uni.showToast({
+						title: '微信账号仅支持6-20个字母、数字、下划线或减号，以字母开头',
+						icon: 'none',
+						mask: true
+					})
+					return
+				}
 				this.$http_json({
 					url: `api/user/center`,
 					method: 'post',
