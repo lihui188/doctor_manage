@@ -118,7 +118,7 @@
 				})
 			},
 			selectImg() {
-				this.$getImgFile(this.imgCount)
+				this.$getImgFile(4,1)
 					.then((res) => {
 						this.$http_file({
 							url: "/api/localStorage/upload",
@@ -131,7 +131,10 @@
 						})
 					})
 					.catch((e) => {
-						this.$warnMsg(e)
+						uni.showToast({
+							title:e,
+							icon:'none'
+						})
 					})
 			},
 			subAudit() {

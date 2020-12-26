@@ -402,10 +402,12 @@
 		}
 		.replyContent {
 			width: 100%;
-			display: -webkit-box;
+			overflow: hidden;
+			text-overflow:ellipsis;
+			white-space: nowrap;
+			// display: -webkit-box;
 			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 2;
-			overflow: hidden;
 		}
 		.time {
 			width: 100%;
@@ -419,12 +421,15 @@
 	color:rgba(255, 141, 26, 1)
 }
 .color-pass{
-	color:rgba(255,0,0,1) !important
+	color:#67C23A !important
 }
 .color-unpass{
-	color:rgba(255, 141, 26, 1) !important
+	color:#F56C6C !important
 }
 .color-unAudit{
-	color:rgba(36, 123, 255, 1) !important;
+	color:#E6A23C !important;
+}
+.color-cancel{
+	color:#909399 !important
 }
 

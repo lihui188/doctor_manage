@@ -97,8 +97,8 @@
 
 		<view class="sortBox">
 			<view class="titleBox">
-				<view class="leftBox" @click="toResultParent(bigType[0].id)">
-					<label>{{bigType[0]['name']}}</label>
+				<view class="leftBox" @click="toResultParent(indexType.id)">
+					<label>{{indexType['name']}}</label>
 					<!-- <label>成功案例</label> -->
 					<image src="../../static/icon/right.png" class="rightImg"></image>
 				</view>
@@ -226,7 +226,10 @@
 				popup: false,
 				callPhone: '',
 				province: '',
-				totalElements: 0
+				totalElements: 0,
+				indexType: {
+					name: '暂无'
+				}
 			}
 		},
 		onLoad() {
@@ -243,15 +246,16 @@
 			let _this = this
 			bus.$off('getProvince')
 			bus.$on('getProvince', res => {
-				_this.province = res
-				if(_this.province !== ''){
+				console.log(1111)
+				this.province = res
+				if (_this.province !== '') {
 					_this.page = 1;
 					_this.bePage = 0;
 					_this.hotPostList = []
 					_this.getHotPost()
 				}
 			})
-			if(this.province === ''){
+			if (this.province === '') {
 				this.getHotPost()
 			}
 		},
@@ -276,6 +280,17 @@
 				this.$refs.loadMore.$loading()
 				this.getHotPost()
 			}
+		},
+		onPullDownRefresh() {
+			this.getInfo()
+			this.getSwiper()
+			this.getSwiper2()
+			this.getType()
+			this.getOneItem()
+			// this.getTwoItem()
+			this.page = 1
+			this.size = 10
+			this.getHotPost()
 		},
 		methods: {
 			hide() {
@@ -391,7 +406,7 @@
 						_this.hotPostList = []
 					}
 					// if(_this.province !== ''){
-						
+
 					// }
 					_this.$refs.loadMore.$loading()
 					_this.bePage = _this.page - 1
@@ -406,7 +421,7 @@
 				}).catch(e => {
 					_this.$refs.loadMore.$loadError();
 				});
-				
+
 			},
 			getSwiper() {
 				let _this = this
@@ -414,7 +429,7 @@
 					url: `api/carousel/xcx/list`,
 					method: 'get',
 					params: {
-						type: 0
+						type: 0,
 					}
 				}).then(res => {
 					_this.swiperList = res.data;
@@ -437,6 +452,7 @@
 					method: 'get'
 				}).then(res => {
 					this.bigType = res.data
+					this.indexType = res.data[0];
 					console.log(this.bigType)
 				});
 			},

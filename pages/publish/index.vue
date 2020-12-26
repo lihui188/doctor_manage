@@ -34,20 +34,20 @@
 				<label class="text">请选择发布类型</label>
 			</view>
 			<view class="radioFlex">
-				<view class="radioBox" @click="roundChange(0)" v-if="mymes.roles[0].name === '普通用户'">
+				<view class="radioBox" @click="roundChange(0)" v-if="mymes.roles[0].name === '普通用户'||mymes.roles[0].name === '医生'">
 					<view class="roundRadio">
 						<view class="selected" v-if="roundChecked == 0"></view>
 					</view>
 					求医
 
 				</view>
-				<view class="radioBox" @click="roundChange(1)" v-if="mymes.roles[0].name === '医生'||mymes.roles[0].name === '医院'||mymes.roles[0].name === '平台'">
+				<view class="radioBox" @click="roundChange(1)" v-if="mymes.roles[0].name !== '普通用户'||mymes.roles[0].name === '医院'||mymes.roles[0].name === '平台'">
 					<view class="roundRadio">
 						<view class="selected" v-if="roundChecked == 1"></view>
 					</view>
 					医疗供应
 				</view>
-				<view class="radioBox" @click="roundChange(2)" v-if="mymes.roles[0].name === '医生'||mymes.roles[0].name === '医院'||mymes.roles[0].name === '平台'">
+				<view class="radioBox" @click="roundChange(2)" v-if="mymes.roles[0].name !== '普通用户'||mymes.roles[0].name === '医院'||mymes.roles[0].name === '平台'">
 					<view class="roundRadio">
 						<view class="selected" v-if="roundChecked == 2"></view>
 					</view>
@@ -90,7 +90,7 @@
 				<label class="text">可用资金</label>
 			</view>
 			<view class="selectSort">
-				<input class="avaliable" type="number" maxlength="8" v-model="available" placeholder="请输入可用资金数" @input="check"/>
+				<input class="avaliable" type="number" maxlength="8" v-model="available" placeholder="请输入可用资金数" @input="check" />
 			</view>
 
 			<view class="itemBox">
@@ -205,11 +205,11 @@
 				<label class="text">上传图片</label>
 			</view>
 			<view class="addImgBox">
-				<view class="imgBox" v-for="(item, index) in imageList" :key="index" :class="index%3 == 1 ? 'margin':''">
+				<view class="imgBox" v-for="(item, index) in imageList" :key="item.id" :class="index%3 == 1 ? 'margin':''">
 					<image class="image" @click="imgInfo(index)" :src="convert(item)" mode="aspectFill"></image>
 					<image class="fork" @click="delImg(index)" src="../../static/delete.png"></image>
 				</view>
-				<view class="imgBox" @click="openCamera" :class="imageList.length%3 == 1 ? 'margin':''">
+				<view class="imgBox" @click="openCamera" :class="imageList.length%3 == 1 ? 'margin':''" v-if="imageList.length<9">
 					<image class="image" src="../../static/upload.png"></image>
 				</view>
 			</view>
@@ -226,7 +226,7 @@
 					<image class="image" src="../../static/icon/video.jpg" v-if="index != showVideo" @click="showVideo = index"></image>
 					<image class="fork" @click="delVideo(index)" src="../../static/delete.png" v-if="index != showVideo"></image>
 				</view>
-				<view class="imgBox" @click="openVideo" :class="videoList.length%3 == 1 ? 'margin':''">
+				<view class="imgBox" @click="openVideo" :class="videoList.length%3 == 1 ? 'margin':''" v-if="videoList.length<3">
 					<image class="image" src="../../static/upload.png"></image>
 				</view>
 			</view>
@@ -319,6 +319,11 @@
 				parentName:'',
 				// 子类
 				
+				
+				// 选择图片大小
+				imgSize:4,
+				imgLength:1
+				
 			}
 		},
 		onLoad() {
@@ -386,9 +391,9 @@
 								msg =  msg + `<img src="` + this.baseUrl + this.imageList[i] + `" />`
 							}
 							
-							for(let j=0;j<this.videoList.length;j++){
-								msg = msg + `<video controls="controls"><source src="` + this.baseUrl + this.videoList[j] + `"/></video>`
-							}
+							// for(let j=0;j<this.videoList.length;j++){
+							// 	msg = msg + `<video controls="controls"><source src="` + this.baseUrl + this.videoList[j] + `"/></video>`
+							// }
 							
 							
 							this.$http_json({
@@ -467,9 +472,6 @@
 					success: res => {
 						if (res.confirm) {
 							this.imageList.splice(i, 1);
-							
-						} else if (res.cancel) {
-							
 						}
 					}
 				});
@@ -477,6 +479,7 @@
 			openCamera() {
 				      this.$getImgFile(4,1)
 				        .then((res) => {
+							
 				          this.$http_file({
 				            url: "/api/localStorage/upload",
 				            method: "post",
@@ -488,7 +491,10 @@
 				          })
 				        })
 				        .catch((e) => {
-				          this.$warnMsg(e)
+				          uni.showToast({
+				          	title:e,
+				          	icon:'none'
+				          })
 				        })
 			},
 			delVideo(i) {
@@ -509,14 +515,11 @@
 				uni.chooseVideo({
 					count: 1,
 					success: e => {
-					
 					uni.showLoading({
 						title: '上传中，请稍后',
 						mask: true
 					})
-						
 					const tempFilePaths = e.tempFilePath;
-					
 						uni.uploadFile({
 							url: _this.baseUrl + "/api/localStorage/upload", 
 							filePath: tempFilePaths,
@@ -557,7 +560,7 @@
 					if(this.mymes.roles[0].name === '普通用户'){
 						this.roundChecked = 0
 					}else{
-						this.roundChecked = 1;
+						this.roundChecked = 0;
 					}
 					if(data.province != '' && data.province != null){
 						this.selectedOptions = [data.province,data.city,data.area]

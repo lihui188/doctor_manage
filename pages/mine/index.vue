@@ -92,7 +92,7 @@
 					</view> -->
 					<view class="postTypeBox color-unAudit" v-if="item.isExamine==1&&item.isAuthentication == false">未认证</view>
 					<view class="postTypeBox color-pass" v-if="item.isExamine==1&&item.isAuthentication">已认证</view>
-					<view class="postTypeBox color-unAudit" v-if="item.isExamine===0">未审核</view>
+					<view class="postTypeBox color-cancel" v-if="item.isExamine===0">未审核</view>
 					<view class="postTypeBox color-unpass" v-if="item.isExamine===-1">被驳回</view>
 					<view class="postTypeBox">
 						<view class="type" v-if="item.pulish_type === 0">求医 · {{item.tpName}}</view>

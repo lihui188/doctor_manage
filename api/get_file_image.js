@@ -17,26 +17,27 @@ function getImgFile(limit = 10, count = 3) {
 		fileEle.style.display = 'none'
 		fileEle.addEventListener('change', () => {
 			const fileList = fileEle.files
-			let size = 0, urlList = []
+			let size = 0,
+				urlList = []
 			urlList.forEach.call(fileList, val => {
 				size += val.size
 				urlList.push(new Promise((resolve, reject) => {
-						let reader = new FileReader()
-						reader.readAsDataURL(val)
-						reader.addEventListener('load', () => {
-							resolve({
-								url: reader.result,
-								raw: val
-							})
+					let reader = new FileReader()
+					reader.readAsDataURL(val)
+					reader.addEventListener('load', () => {
+						resolve({
+							url: reader.result,
+							raw: val
 						})
+					})
 				}))
 			})
-			if(urlList.length > count) {
-				reject(`选择图片数量不能超过${count}张!`) 
+			if (urlList.length > count) {
+				reject(`选择图片数量不能超过${count}张!`)
 				return
 			}
-			if(size / (1024 ** 2) > limit) {
-				reject(`图片总大小不能超过${limit}MB!`) 
+			if (size / (1024 ** 2) > limit) {
+				reject(`图片总大小不能超过${limit}MB!`)
 				return
 			}
 			Promise.all(urlList).then(result => {
@@ -51,14 +52,14 @@ function getImgFile(limit = 10, count = 3) {
 	// #ifndef H5
 	return new Promise((resolve, reject) => {
 		uni.chooseImage({
-		    count: count, //默认9
-		    sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-		    success: res => {
-		      resolve(res.tempFilePaths)
-		    },
-				fail: e => {
-					reject(e)
-				}
+			count: count, //默认9
+			sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+			success: res => {
+				resolve(res.tempFilePaths)
+			},
+			fail: e => {
+				reject(e)
+			}
 		});
 	})
 	// #endif

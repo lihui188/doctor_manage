@@ -9,7 +9,7 @@
 				<view class="title">{{' '}}</view>
 			</view>
 		</view>
-
+		
 		<view class="avatarBox">
 			<view class="text">头像</view>
 			<view class="rightBox">
@@ -101,9 +101,10 @@
 
 <script>
 	import pickRegions from '@/components/pick-regions/pick-regions.vue'
-	import { 
-	  isPhone, 
-	  isMobile } 
+	import {
+		isPhone,
+		isMobile
+	}
 	from '@/utils/validate'
 	import {
 		baseUrl,
@@ -116,6 +117,9 @@
 		},
 		data() {
 			return {
+				TabCur: 0,
+				scrollLeft: 0,
+				
 				myMes: {},
 				baseUrl: baseUrl,
 				appid: appid,
@@ -149,8 +153,9 @@
 				}
 			},
 			upLoad() {
-				this.$getImgFile(this.imgCount)
+				this.$getImgFile(4, 1)
 					.then((res) => {
+						console.log(res)
 						this.$http_file({
 							url: "api/user/updateAvatar",
 							method: "post",
@@ -172,7 +177,10 @@
 						})
 					})
 					.catch((e) => {
-						this.$warnMsg(e)
+						uni.showToast({
+							title: e,
+							icon: 'none'
+						})
 					})
 			},
 			closed() {
@@ -292,7 +300,7 @@
 					})
 					return
 				}
-				if(!/^1[0-9]{10}$/.test(_this.vphone)){
+				if (!/^1[0-9]{10}$/.test(_this.vphone)) {
 					uni.showToast({
 						title: '手机号码格式不正确',
 						mask: true,
