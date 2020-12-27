@@ -3,40 +3,78 @@
 		<view>
 			<view class="topTitleBox" ref="topTitleBox" :style="{'padding-top': 'calc(' + (topHeight - 5) + 'px  + 22upx)'}">
 				<image src="../../static/arrow.png" class="arrow" @click="back()"></image>
-				<view class="title">个人信息</view>
+				<view class="title">我的信息</view>
 			</view>
 			<view class="headPlaceBox" ref="headPlaceBox" :style="{'margin-top': 'calc(' + (topHeight - 5) + 'px)'}">
 				<view class="title">{{' '}}</view>
 			</view>
 		</view>
-		
-		<view class="avatarBox">
-			<view class="text">头像</view>
-			<view class="rightBox">
-				<image src="../../static/unLogin.png" class="img" v-if="myMes.avatar == null" @click="upLoad()"></image>
-				<image :src="convert(myMes.avatar)" class="img" v-if="myMes.avatar != null" @click="upLoad()"></image>
+		<view class="page_box" v-if="myMes.roles[0].name === '医生'">
+			<view class="item" v-for="(item,index) in select_msg" :class="msgType===index?'action':''" :key="index" @click="selectMsgType(index)">{{item.name}}</view>
+		</view>
+
+		<view v-if="msgType === 0">
+			<view class="avatarBox">
+				<view class="text">头像</view>
+				<view class="rightBox">
+					<image src="../../static/unLogin.png" class="img" v-if="myMes.avatar == null" @click="upLoad()"></image>
+					<image :src="convert(myMes.avatar)" class="img" v-if="myMes.avatar != null" @click="upLoad()"></image>
+					<image src="../../static/arrow.png" class="arrow"></image>
+				</view>
+			</view>
+
+			<view class="infoBox borderBox" @click="$refs.popupName.open()">
+				<view class="text">用户名称</view>
+				<view class="content">{{myMes.nickname != null ? myMes.nickname : '用户名'}}</view>
+				<image src="../../static/arrow.png" class="arrow"></image>
+			</view>
+
+			<view class="infoBox borderBox" @click="toCompany">
+				<view class="text">地址信息</view>
+				<view class="content">{{myMes.province ? myMes.province + ' ' + myMes.city + ' ' + myMes.area : '请填写地址信息'}}</view>
+				<image src="../../static/arrow.png" class="arrow"></image>
+			</view>
+
+			<view class="infoBox" @click="$refs.popup.open()">
+				<view class="text">手机号</view>
+				<view class="content">{{noPassByMobile(myMes.phone || '请填写手机号码')}}</view>
 				<image src="../../static/arrow.png" class="arrow"></image>
 			</view>
 		</view>
-
-		<view class="infoBox borderBox" @click="$refs.popupName.open()">
-			<view class="text">用户名称</view>
-			<view class="content">{{myMes.nickname != null ? myMes.nickname : '用户名'}}</view>
-			<image src="../../static/arrow.png" class="arrow"></image>
+		<view v-if="msgType === 1">
+			<view class="padding-20">
+				<span>真实姓名</span>
+				<span class="margin-left-30">{{doctor.name}}</span>
+			</view>
+			<view class="padding-20">
+				<span>年龄</span>
+				<span class="margin-left-30">{{doctor.age}}</span>
+			</view>
+			<view class="padding-20">
+				<span>身份证号</span>
+				<span class="margin-left-30">{{doctor.idCode}}</span>
+			</view>
+			<view class="padding-20">
+				<span>联系地址</span>
+				<span class="margin-left-30">{{doctor.province + doctor.city + doctor.area}}</span>
+			</view>
+			<view class="padding-20">
+				<span>详细地址</span>
+				<span class="margin-left-30">{{doctor.addressDetail}}</span>
+			</view>
+			<view>
+				<span>证件号码</span>
+				<span class="margin-left-30">{{doctor.certificateCode}}</span>
+			</view>
+			<view style="display:flex;align-items:center;" class="padding-20">
+				<span>
+					医生执照
+				</span>
+				<div>
+					<image style="width:300upx;height:200upx;" @click="imgInfo(index)" :src="convert(doctor.certificateImg)" mode="aspectFill"></image>
+				</div>
+			</view>
 		</view>
-
-		<view class="infoBox borderBox" @click="toCompany">
-			<view class="text">地址信息</view>
-			<view class="content">{{myMes.province ? myMes.province + ' ' + myMes.city + ' ' + myMes.area : '请填写地址信息'}}</view>
-			<image src="../../static/arrow.png" class="arrow"></image>
-		</view>
-
-		<view class="infoBox" @click="$refs.popup.open()">
-			<view class="text">手机号</view>
-			<view class="content">{{noPassByMobile(myMes.phone || '请填写手机号码')}}</view>
-			<image src="../../static/arrow.png" class="arrow"></image>
-		</view>
-
 		<view class="unLoginBox" @click="exit()">
 			退出登录
 		</view>
@@ -117,10 +155,25 @@
 		},
 		data() {
 			return {
+				select_msg: [{
+						name: '个人信息',
+						value: 0
+					},
+					{
+						name: '医生信息',
+						value: 1
+					}
+				],
+				doctor: {},
+				msgType: 0,
 				TabCur: 0,
 				scrollLeft: 0,
-				
-				myMes: {},
+
+				myMes: {
+					roles: [{
+						name: ''
+					}]
+				},
 				baseUrl: baseUrl,
 				appid: appid,
 				code_state: 1,
@@ -144,6 +197,20 @@
 			this.getMyMes()
 		},
 		methods: {
+			imgInfo(i) {
+				let tempList = [];
+				tempList.push(this.baseUrl + this.doctor.certificateImg)
+				//显示图片
+				uni.previewImage({
+					current: i,
+					loop: false,
+					urls: tempList,
+					indicator: 'default'
+				});
+			},
+			selectMsgType(index) {
+				this.msgType = index
+			},
 			handleGetRegion2(region) {
 
 				this.form = {
@@ -155,7 +222,6 @@
 			upLoad() {
 				this.$getImgFile(4, 1)
 					.then((res) => {
-						console.log(res)
 						this.$http_file({
 							url: "api/user/updateAvatar",
 							method: "post",
@@ -367,7 +433,22 @@
 				}).then(res => {
 					this.myMes = res.data
 					this.vname = res.data.nickname
+					if (this.myMes.roles[0].name === '医生') {
+						this.getDoctorDetail()
+					}
 				});
+			},
+			getDoctorDetail() {
+				this.$http_normal({
+					url: `/api/doctor/get`,
+					method: 'get'
+				}).then(res => {
+					if (res.status === 200) {
+						if (res.data) {
+							this.doctor = res.data
+						}
+					}
+				})
 			},
 			noPassByMobile(str) {
 				if (null != str && str != undefined) {

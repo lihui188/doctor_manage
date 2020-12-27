@@ -56,6 +56,8 @@ page{
 .proMsg{
 	font-size:28upx;
 	margin:20upx 40upx;
+	display: flex;
+	justify-content: space-between;
 }
 .fillContent{
 	flex:1;

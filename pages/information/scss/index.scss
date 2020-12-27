@@ -304,6 +304,28 @@ page {
 		}
 	}
 }
+.page_box{
+	width:100%;
+	display: flex;
+	justify-content: space-around;
+	font-size: 40upx;
+}
+.item{
+	width:50%;
+	text-align: center;
+	padding: 10upx;
+}
+.action{
+	color:#007AFF;
+	border-bottom: 4upx solid #007AFF;
+}
 
 
+.margin-left-30{
+	margin-left:30upx;
+}
+
+.padding-20{
+	padding:20upx;
+}
 

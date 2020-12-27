@@ -23,7 +23,10 @@
 			<image src="../../static/unLogin.png" class="left" mode="aspectFill" v-if="myMes.avatar == null"></image>
 			<image :src="convert(myMes.avatar)" class="left" mode="aspectFill" v-if="myMes.avatar != null"></image>
 			<view class="center">
-				<view class="name">{{myMes.nickname != null ? myMes.nickname :'用户名'}}</view>
+				<view class="name">{{myMes.nickname != null ? myMes.nickname :'用户名'}}
+				<span v-if="myMes.roles[0].name === '医生'" class="color-doctor">{{myMes.roles[0].name}}</span>
+				<span v-if="myMes.roles[0].name === '普通用户'" class="color-user">{{myMes.roles[0].name}}</span>
+				</view>
 				<view class="company">{{myMes.province != null ? myMes.province+myMes.city+myMes.area :'请前往填写地址信息'}}</view>
 				<view class="phone">{{noPassByMobile(myMes.phone||'请绑定手机')}}</view>
 			</view>
@@ -40,7 +43,7 @@
 						</view>
 					</view>
 				</view>
-				<view class="navbarItem">
+				<view class="navbarItem" v-if="myMes.roles[0].name === '普通用户'">
 					<view class="text color-red">
 						<view class="label" @click.stop="toDoctor">
 							<span>成为医生</span>

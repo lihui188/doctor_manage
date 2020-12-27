@@ -163,6 +163,7 @@
 					method:'get'
 				}).then(res => {
 					_this.bigType = res.data.filter(arr => arr.parentId === null);
+					this.selectLeft = this.bigType[0].id
 					_this.getSmallType()
 					
 					const queryItem = uni.createSelectorQuery().in(this);

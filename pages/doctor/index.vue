@@ -10,7 +10,10 @@
 			</view>
 		</view>
 		<view class="proMsg">
-			请填写身份信息
+			<span>请填写身份信息</span>
+			<span style="color:#909399" v-if="subDoctor.isExamine === 0">审核中</span>
+			<span style="color:#F56C6C" v-if="subDoctor.isExamine === -1">被驳回</span>
+			<span style="color:#67C23A" v-if="subDoctor.isExamine === 1">审核通过</span>
 		</view>
 		<view>
 			<view class="inputBox">
@@ -70,14 +73,16 @@
 
 <script>
 	import pickRegions from '@/components/pick-regions/pick-regions.vue'
-	import { isId } from '@/utils/validate'
+	import {
+		isId
+	} from '@/utils/validate'
 	export default {
 		components: {
 			pickRegions
 		},
 		data() {
 			return {
-				myMes:{},
+				myMes: {},
 				imageList: [],
 				userId: '',
 				doctorInfo: {},
@@ -112,13 +117,13 @@
 					method: 'get'
 				}).then(res => {
 					this.myMes = res.data
-					if(this.myMes['roles'][0].name == '医生'){
+					if (this.myMes['roles'][0].name == '医生') {
 						this.getDoctorDetail()
 					}
 				})
 			},
 			selectImg() {
-				this.$getImgFile(4,1)
+				this.$getImgFile(4, 1)
 					.then((res) => {
 						this.$http_file({
 							url: "/api/localStorage/upload",
@@ -132,82 +137,82 @@
 					})
 					.catch((e) => {
 						uni.showToast({
-							title:e,
-							icon:'none'
+							title: e,
+							icon: 'none'
 						})
 					})
 			},
 			subAudit() {
-				if(this.subDoctor.trueName === ''){
+				if (this.subDoctor.trueName === '') {
 					uni.showToast({
-						title:'真实姓名不能为空',
-						icon:'none'
+						title: '真实姓名不能为空',
+						icon: 'none'
 					})
 					return
 				}
 				var trueReg = /^([\u4e00-\u9fa5]{1,20}|[a-zA-Z\.\s]{1,20})$/
-				if(this.subDoctor.trueName !== ''&&!trueReg.test(this.subDoctor.trueName)){
+				if (this.subDoctor.trueName !== '' && !trueReg.test(this.subDoctor.trueName)) {
 					uni.showToast({
-						title:'姓名只能由汉字或英文组成',
-						icon:'none'
+						title: '姓名只能由汉字或英文组成',
+						icon: 'none'
 					})
 					return
 				}
-				if(this.subDoctor.age === ''){
+				if (this.subDoctor.age === '') {
 					uni.showToast({
-						title:'年龄不能为空',
-						icon:'none'
+						title: '年龄不能为空',
+						icon: 'none'
 					})
 					return
 				}
 				var patt = /^120$|^[1-9]$|^(1[0-1]|[1-9])\d$/;
-				if(this.subDoctor.age !== ''&&!patt.test(this.subDoctor.age)){
+				if (this.subDoctor.age !== '' && !patt.test(this.subDoctor.age)) {
 					uni.showToast({
-						title:'年龄只能输入1-120',
-						icon:'none'
+						title: '年龄只能输入1-120',
+						icon: 'none'
 					})
 					return
 				}
-				if(this.subDoctor.idCode === ''){
+				if (this.subDoctor.idCode === '') {
 					uni.showToast({
-						title:'身份证号不能为空',
-						icon:'none'
+						title: '身份证号不能为空',
+						icon: 'none'
 					})
 					return
 				}
-				
-				if(!isId(this.subDoctor.idCode)){
+
+				if (!isId(this.subDoctor.idCode)) {
 					uni.showToast({
-						title:'身份证号输入错误',
-						icon:'none'
+						title: '身份证号输入错误',
+						icon: 'none'
 					})
 					return
 				}
-				if(this.subDoctor.province === ''){
+				if (this.subDoctor.province === '') {
 					uni.showToast({
-						title:'请选择联系地址',
-						icon:'none'
+						title: '请选择联系地址',
+						icon: 'none'
 					})
 					return
 				}
-				if(this.subDoctor.detailAddress === ''){
+				if (this.subDoctor.detailAddress === '') {
 					uni.showToast({
-						title:'详细地址不能为空',
-						icon:'none'
+						title: '详细地址不能为空',
+						icon: 'none'
 					})
 					return
 				}
-				if(this.subDoctor.certificateCode === ''){
+				if (this.subDoctor.certificateCode === '') {
 					uni.showToast({
-						title:'证件号码不能为空',
-						icon:'none'
+						title: '证件号码不能为空',
+						icon: 'none'
 					})
 					return
 				}
-				if(this.subDoctor.certificateImg === ''){
+				if (this.subDoctor.certificateImg === '') {
 					uni.showToast({
-						title:'请上传执照图片',
-						icon:'none'
+						title: '请上传执照图片',
+						icon: 'none'
 					})
 					return
 				}
@@ -242,8 +247,8 @@
 					url: `/api/doctor/get`,
 					method: 'get'
 				}).then(res => {
-					if(res.status === 200){
-						if(res.data){
+					if (res.status === 200) {
+						if (res.data) {
 							this.subDoctor = res.data
 						}
 					}
