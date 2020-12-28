@@ -10,7 +10,7 @@
 			</view>
 		</view>
 		<view class="page_box" v-if="myMes.roles[0].name === '医生'">
-			<view class="item" v-for="(item,index) in select_msg" :class="msgType===index?'action':''" :key="index" @click="selectMsgType(index)">{{item.name}}</view>
+			<view class="item" v-for="(item,index) in select_msg" :class="msgType==index?'action':''" :key="index" @click="selectMsgType(index)">{{item.name}}</view>
 		</view>
 
 		<view v-if="msgType === 0">
@@ -44,7 +44,7 @@
 		<view v-if="msgType === 1">
 			<view class="padding-20">
 				<span>真实姓名</span>
-				<span class="margin-left-30">{{doctor.name}}</span>
+				<span class="margin-left-30">{{doctor.trueName}}</span>
 			</view>
 			<view class="padding-20">
 				<span>年龄</span>
@@ -60,9 +60,9 @@
 			</view>
 			<view class="padding-20">
 				<span>详细地址</span>
-				<span class="margin-left-30">{{doctor.addressDetail}}</span>
+				<span class="margin-left-30">{{doctor.detailAddress}}</span>
 			</view>
-			<view>
+			<view class="padding-20">
 				<span>证件号码</span>
 				<span class="margin-left-30">{{doctor.certificateCode}}</span>
 			</view>
@@ -70,7 +70,7 @@
 				<span>
 					医生执照
 				</span>
-				<div>
+				<div class="margin-left-30">
 					<image style="width:300upx;height:200upx;" @click="imgInfo(index)" :src="convert(doctor.certificateImg)" mode="aspectFill"></image>
 				</div>
 			</view>
@@ -115,7 +115,6 @@
 		<uni-popup style="z-index: 100;" ref="popupName" type="bottom" :maskClick="false">
 
 			<view class="selectTypeBoxPop">
-
 				<view class="topBox">
 					<view class="close" @click="vname = myMes.nickname;$refs.popupName.close()">取消</view>
 					<view class="title">编辑用户名称</view>
@@ -164,7 +163,20 @@
 						value: 1
 					}
 				],
-				doctor: {},
+				doctor: {
+					age: '',
+					certificateCode: '',
+					certificateImg: '',
+					province: '',
+					city: '',
+					area: '',
+					detailAddress: '',
+					id: '',
+					idCode: '',
+					isExamine: '',
+					trueName: '',
+					userId: '',
+				},
 				msgType: 0,
 				TabCur: 0,
 				scrollLeft: 0,
@@ -212,7 +224,6 @@
 				this.msgType = index
 			},
 			handleGetRegion2(region) {
-
 				this.form = {
 					province: region[0].name,
 					city: region[1].name,

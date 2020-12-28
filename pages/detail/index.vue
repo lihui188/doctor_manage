@@ -94,9 +94,7 @@
 <script>
 	import { baseUrl } from '@/global/js/baseUrl.js'
 	export default {
-		components: {
-			
-		},
+		components: {},
 		data() {
 			return {
 				id: '',

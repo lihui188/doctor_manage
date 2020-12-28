@@ -173,7 +173,13 @@
 		data() {
 			return {
 				title: '医生论坛',
-				myMes: {},
+				myMes: {
+					roles:[
+						{
+							name:''
+						}
+					]
+				},
 				myModeList: [{
 						name: '我的发布',
 						value: '我的发布'

@@ -83,12 +83,10 @@
 				<view class="text">关于我们</view>
 			</view>
 		</view>
-
 		<!-- <view class="newImgBox">
 			<image src="../../static/lunbo/lunbo5.png" class="img"></image>
 		</view> -->
-
-		<swiper class="swiper_img" :indicator-active-color="activeColor" :indicator-color="indicatorColor" :circular="circular"
+		<swiper v-if="swiperList2.length!==0" class="swiper_img" :indicator-active-color="activeColor" :indicator-color="indicatorColor" :circular="circular"
 		 :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
 			<swiper-item v-for="(item,i) in swiperList2" :key="i">
 				<image :src="convert(item.image)" class="img" mode="scaleToFill" @click="toUrl(item.link)"></image>
