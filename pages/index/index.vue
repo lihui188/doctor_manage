@@ -96,7 +96,8 @@
 		<view class="sortBox">
 			<view class="titleBox">
 				<view class="leftBox" @click="toResultParent(indexType.id)">
-					<label>{{indexType['name']}}</label>
+					<label v-if="indexType.name">{{indexType['name']}}</label>
+					<!-- <label v-else>暂无</label> -->
 					<!-- <label>成功案例</label> -->
 					<image src="../../static/icon/right.png" class="rightImg"></image>
 				</view>
@@ -144,7 +145,6 @@
 					<image class="imgItem" :src="convert(items)" mode="aspectFill" v-for="(items,indexs) in getImage(item.imageList)"
 					 :key="indexs" :class="indexs == 1 ? 'center':''"></image>
 				</view>
-
 				<view class="detailBox">
 					<view class="left">
 						<image src="../../static/icon/post_location.png" class="icon"></image>
@@ -244,7 +244,6 @@
 			let _this = this
 			bus.$off('getProvince')
 			bus.$on('getProvince', res => {
-				console.log(1111)
 				this.province = res
 				if (_this.province !== '') {
 					_this.page = 1;
@@ -449,9 +448,10 @@
 					url: `/api/postType/list/father`,
 					method: 'get'
 				}).then(res => {
-					this.bigType = res.data
-					this.indexType = res.data[0];
-					console.log(this.bigType)
+					if(res.data.length>0){
+						this.bigType = res.data
+						this.indexType = res.data[0];
+					}
 				});
 			},
 			getOneItem() {

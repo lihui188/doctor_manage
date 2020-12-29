@@ -29,3 +29,8 @@ Vue.prototype.$setMonth = date.setMonth
 Vue.prototype.$setYear = date.setYear
 Vue.prototype.$setDate = date.setDate
 Vue.prototype.$fromNow = date.fromNow
+
+
+// 选择文件
+import getFile from '@/api/get_file'
+Vue.prototype.$getFile = getFile

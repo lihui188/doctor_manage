@@ -218,7 +218,6 @@
 			}
 			if (options.hasOwnProperty('parentId')) {
 				this.bigTypeSelect = options.parentId
-				console.log(this.bigTypeSelect)
 			}
 			// if (options.hasOwnProperty('childId')) {
 			// 	this.smallTypeSelect = options.childId
@@ -334,7 +333,6 @@
 				if (this.bigTypeSelect != item.id) {
 					this.bigTypeSelect = item.id
 					this.publishType1 = item.ptype
-					console.log(this.publishType1)
 				} else {
 					this.bigTypeSelect = ''
 					this.publishType1 = ''
@@ -393,7 +391,6 @@
 				}
 				console.log(this.publishTypes)
 				if (this.publishType3 !== '') {
-					this.publishTypes.push(this.publishType3)
 				}
 
 

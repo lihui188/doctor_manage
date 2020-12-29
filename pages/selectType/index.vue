@@ -113,8 +113,7 @@
 				this.vuex_type = item
 			},
 			sure(){
-				let _this = this
-				if(_this.vuex_type.id == ''){
+				if(this.vuex_type.id == ''){
 					uni.showToast({
 						title: '请先选择一项分类',
 						mask: true,
@@ -122,8 +121,8 @@
 					})
 					return
 				}
-				bus.$emit('getType',_this.vuex_type)
-				uni.navigateBack({})
+				this.$setMemoryPmt('selectType',this.vuex_type)
+				uni.navigateBack()
 			},
 			toResult(id){
 				uni.navigateTo({

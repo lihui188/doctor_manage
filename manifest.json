@@ -138,6 +138,7 @@
         "router" : {
             "mode" : "history"
         },
-        "template" : ""
+        "template" : "",
+        "domain" : "doctorforum.whalenect.com"
     }
 }

@@ -275,11 +275,7 @@
 		data() {
 			return {
 				mymes:{
-					roles:[
-						{
-							
-						}
-					]
+					roles:[{}]
 				},
 				popup: false,
 				step: 1,
@@ -294,7 +290,7 @@
 				postProvince: '',
 				postArea: '',
 				postCity: '',
-				smallTypeObj: '',
+				smallTypeObj: {},
 				bigType: [],
 				
 				corporateName: '',
@@ -329,19 +325,16 @@
 		onLoad() {
 			this.getType()
 			this.getMyMes()
+			this.$setMemoryPmt('selectType')
 		},
 		onShow() {
 			let _this = this
-			bus.$off('getType')
-			bus.$on('getType',res => {
-				_this.smallTypeObj = res
-			})
-		this.getMyMes()
+			this.smallTypeObj = this.$getMemoryPmt('selectType')
+			this.getMyMes()
 		},
 		methods: {
 			check() {
-				this.available = this.available.replace(/^0*/g, "");
-				this.available = this.available.replace(/[^0-9]/g, "");
+				this.available = this.available.replace(/^0*/g, "").replace(/[^0-9]/g, "");
 			},
 			endVideo(){
 				this.showVideo = -1
@@ -434,6 +427,7 @@
 									icon: 'success',
 									mask: true
 								})
+								this.$setMemoryPmt('selectType')
 								setTimeout(()=> {
 									uni.reLaunch({
 										url: '/pages/publish/success?id=' + res.data.id
@@ -511,7 +505,31 @@
 				});
 			},
 			openVideo() {
-				let _this = this
+				/* this
+					.$getFile(20, 1) // 限制上传文件总数量为20M，数量为10个
+					.then(result => { 
+						console.log(result)
+					}) */
+				this.$getFile(50,1, 'video/*')
+				  .then((res) => {
+				    this.$http_file({
+				      url: "/api/localStorage/upload",
+				      method: "post",
+				      data: {
+				        file: res[0],
+				      },
+				    }).then((result) => {
+				     this.videoList.push(result.data.url)
+					 // console.log(this.videoList)
+				    })
+				  })
+				  .catch((e) => {
+				    uni.showToast({
+				    	title:e,
+				    	icon:'none'
+				    })
+				  })
+				/* let _this = this
 				uni.chooseVideo({
 					count: 1,
 					success: e => {
@@ -548,7 +566,7 @@
 						});
 				
 					}
-				});
+				}); */
 			},
 			getMyMes(){
 				this.$http_normal({
@@ -651,8 +669,8 @@
 			getBigName(id){
 				let arr = this.bigType.find(array => array.id == id)
 				this.parentId = arr.id
+				console.log(this.parentId)
 				this.parentName = arr.name
-				console.log(this.parentId);
 				return arr.name
 			},
 			getType(){

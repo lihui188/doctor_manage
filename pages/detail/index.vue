@@ -144,7 +144,7 @@
 				let content1 = content.replace(/pre/g,"p")
 				let contents = content1.replace(/<img/g,"<img style='max-width:100%;height:auto;'")
 				
-				return contents.replace(/<video/g,"<video style='width:100%;height:30vh;'")
+				return contents.replace(/<video/g,"<video preload='true' webkit-playsinline='true' x5-video-player-type='h5' x5-video-orientation='portraint' style='width:100%;height:30vh;'")
 			},
 			onPageScroll(e){
 					if(e.scrollTop>300){ 

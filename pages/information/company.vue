@@ -78,7 +78,6 @@
 			
 			//父组件的获取子组件传递的值
 			change(result) {
-				 console.log(JSON.stringify(result.data));
 				  this.planLocate = ''; 
 				  result.data.forEach( (item,index) =>{
 					  if(index===0){

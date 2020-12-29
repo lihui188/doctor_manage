@@ -509,7 +509,6 @@
 					url: `/api/postType/list/father`
 				}).then(res => {
 					this.bigType = res.data.filter(arr => arr.parentId === null);
-					console.log(this.bigType)
 				});
 			},
 			getPost() {
